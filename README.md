@@ -4,6 +4,7 @@
 
    Настройка .env окружения, пример  `.env.example`
 -  install pipenv `pip install pipenv`
+- `pipenv shell`
 - `pipenv install`
 - `python manage.py makemigrations && python manage.py migrate`
 - `python manage.py createsuperuser`
@@ -12,6 +13,7 @@
 
 ### Запуск Redis для celery
 - `docker run -d -p 6379:6379 redis`
+- `docker container ls`
 
 
 ### Запуск Celery
