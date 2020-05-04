@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <div class="container-sm">
+        <h2>Регистрация</h2>
+        <form method="post" class="">
+            <div class="form-row">
+                {% csrf_token %}
+                <div class="form-group col-7">
+                    <label for="">Ваше имя *</label>
+                    {% render_field form.first_name|add_class:"form-control" placeholder="Имя *" %}
+                </div>
+                <div class="form-group col-7">
+                    <label for="">Ваша Фамилия *</label>
+                    {% render_field form.last_name|add_class:"form-control" placeholder="Фамилия *" %}
+                </div>
+                <div class="form-group col-7">
+                    <label for="">Дата рождения *</label>
+                    {% render_field form.birth_date|add_class:"form-control" placeholder="Дата рождения *" %}
+                </div>
+                <div class="form-group col-7">
+                    <label for="">Ваш email *</label>
+                    {% render_field form.email|add_class:"form-control" placeholder="Email... *" %}
+                </div>
+                <div class="form-group col-7">
+                    <label for="">Пароль *</label>
+                    {% render_field form.password1|add_class:"form-control" placeholder="Пароль *" %}
+                </div>
+                <div class="form-group col-7">
+                    <label for="">Повторите пароль *</label>
+                    {% render_field form.password2|add_class:"form-control" placeholder="Повторите пароль *" %}
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary mb-2" value="Зарегистрироваться">
+        </form>
+        <div>
+            <strong>Уже зарегистрированы? <a href="{% url 'signin' %}">Войти</a></strong>
+        </div>
+        {% if form.errors %}
+            {% for field in form %}
+                {% if field.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<div class="container-sm">
+    <h2>Оставить комментарий</h2>
+    <form method="post" id="comment-form">
+        <div class="form-row">
+            {% csrf_token %}
+            {% render_field comment_form.article %}
+            <div class="form-group col-7">
+                <label for="">Ваше имя</label>
+                {% render_field comment_form.author|add_class:"form-control" placeholder="Ваше имя..." %}
+            </div>
+            <div class="form-group col-7">
+                <label for="">Комментарий</label>
+                {% render_field comment_form.body|add_class:"form-control" placeholder="Напишите комментарий..." %}
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary mb-2" value="Отправить">
+    </form>
+    <div class="alert alert-success message-success" style="display: none" role="alert">
+        <strong>Спасибо за ваш комментарий</strong>
+    </div>
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% for message in messages %}
+        <strong style="color: red">{{ message }}</strong>
+    {% endfor %}
+</div>
+<script>
+    $("#comment-form").submit(function (e) {
+        e.preventDefault();
+        let serializedData = $(this).serialize();
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'post_comment' %}",
+            data: serializedData,
+            success: function (response) {
+                $("#comment-form").trigger('reset');
+                $("#id_author").focus();
+                $("#id_body").focus();
+
+                let instance = JSON.parse(response["instance"]);
+                let fields = instance[0]["fields"];
+                $('.message-success').fadeIn('slow/500/fast');
+                $('#comment-form').css('display', 'none');
+            },
+            error: function (response) {
+                alert(response["responseJSON"]["error"]);
+            }
+        })
+    })
+</script>
