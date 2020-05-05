@@ -1,3 +1,4 @@
 .idea/
 .env
-Pipfile.lock
+.env.local
+staticfiles/

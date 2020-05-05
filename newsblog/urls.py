@@ -23,6 +23,7 @@ urlpatterns = [
                   path('', include('apps.home.urls')),
                   path('', include('apps.user.urls')),
                   path('', include('apps.article.urls'))
+
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

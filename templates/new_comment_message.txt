@@ -1,2 +1,2 @@
 У вас новый комментарий к публикации - {{ article_title }}!
-http://{{ domain }}/article/{{ article_url }}
+https://{{ domain }}/article/{{ article_url }}

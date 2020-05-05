@@ -18,6 +18,10 @@ django-ckeditor = "*"
 easy-thumbnails = "*"
 django-autoslug = "==1.9.6"
 unidecode = "==1.1.1"
+gunicorn = "*"
+whitenoise = "*"
+django-storages = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.8"

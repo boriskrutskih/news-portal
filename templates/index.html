@@ -11,7 +11,7 @@
 
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img src="{{ article.image|thumbnail_url:'image' }}" alt="">
+                            <img src="{{ article.image.url }}" style="width: 100%" alt="">
                             <div class="card-body">
                                 <p>{{ article.title }}</p>
                                 <p><i>Автор: {{ article.author.first_name }}</i></p>
@@ -23,11 +23,11 @@
                                         <a href="article/{{ article.article_slug }}"
                                            class="btn btn-sm btn-outline-secondary">Просмотр</a>
                                         <div class="mr-2"></div>
-{#                                        {% if user.is_authenticated %}#}
-{#                                            <button type="button" class="btn btn-sm btn-outline-secondary">#}
-{#                                                Редактирование#}
-{#                                            </button>#}
-{#                                        {% endif %}#}
+                                        {#                                        {% if user.is_authenticated %}#}
+                                        {#                                            <button type="button" class="btn btn-sm btn-outline-secondary">#}
+                                        {#                                                Редактирование#}
+                                        {#                                            </button>#}
+                                        {#                                        {% endif %}#}
                                     </div>
                                     <small class="text-muted">{{ article.created_at|date:'d.m.Y' }}</small>
                                 </div>

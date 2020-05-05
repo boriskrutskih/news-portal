@@ -12,7 +12,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(null=True)
     body = RichTextField(blank=True, null=False)
-    image = ThumbnailerImageField()
+    image = models.FileField()
     moderation = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)

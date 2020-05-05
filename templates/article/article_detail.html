@@ -9,7 +9,7 @@
         <p><strong>Автор: {{ object.author.first_name }}</strong></p>
         <p><strong>Дата публикации: {{ article.created_at|date:'d.m.Y' }}</strong></p>
         <p>{{ article.description }}</p>
-        <img src="{{ article.image|thumbnail_url:'image' }}" alt="">
+        <img src="{{ article.image.url }}" style="width: 100%" alt="">
         <p class="lead">{{ object.body|safe }}</p>
         <hr>
         <h1>Комментарии ({{ comments.count }})</h1>
